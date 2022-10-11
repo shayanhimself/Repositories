@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">AbnRepositories</string>
+    <string name="appName">ABN Amro Repositories</string>
+
 </resources>

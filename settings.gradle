@@ -15,3 +15,6 @@ dependencyResolutionManagement {
 rootProject.name = "AbnRepositories"
 include ':app'
 include ':domain'
+include ':data'
+include ':database'
+include ':feature:repolist'
