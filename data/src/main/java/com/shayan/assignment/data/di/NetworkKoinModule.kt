@@ -4,6 +4,7 @@ import com.google.gson.GsonBuilder
 import com.shayan.assignment.data.DataConstants.BASE_URL
 import com.shayan.assignment.data.DataConstants.TIMEOUT_SECONDS
 import com.shayan.assignment.data.api.GithubService
+import com.shayan.assignment.data.api.RemoteDataSource
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -31,5 +32,9 @@ val networkKoinModule = module {
 
     single<GithubService> {
         get<Retrofit>().create(GithubService::class.java)
+    }
+
+    factory {
+        RemoteDataSource(githubService = get())
     }
 }

@@ -28,7 +28,7 @@ android {
 
 dependencies {
     implementation project(":data")
-    implementation project(":database") //TODO: do we need this?
+    implementation project(":model")
 
     // Core
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
@@ -53,8 +53,6 @@ dependencies {
     implementation "io.insert-koin:koin-core:$koinVersion"
     implementation "io.insert-koin:koin-android:$koinVersion"
     implementation "io.insert-koin:koin-androidx-viewmodel:$koinVersion"
-    // Pagination
-    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
     // Image Loader
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     // Test

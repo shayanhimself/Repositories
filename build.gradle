@@ -24,7 +24,6 @@ buildscript {
         koinVersion = '2.1.6'
         retrofitVersion = '2.9.0'
         gsonVersion = '2.8.5'
-        pagingVersion = '3.1.1'
         glideVersion = '4.10.0'
         mockitoVersion = '4.5.1'
         roomVersion = '2.4.3'

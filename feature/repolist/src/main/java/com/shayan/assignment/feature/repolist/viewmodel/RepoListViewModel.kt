@@ -1,13 +1,46 @@
 package com.shayan.assignment.feature.repolist.viewmodel
 
 import androidx.lifecycle.ViewModel
-import androidx.paging.PagingData
+import androidx.lifecycle.viewModelScope
 import com.shayan.assignment.data.repository.GithubRepository
-import com.shayan.assignment.database.entity.GithubRepoEntity
-import kotlinx.coroutines.flow.Flow
+import com.shayan.assignment.data.repository.GithubRepository.Companion.INITIAL_PAGE
+import com.shayan.assignment.model.GithubRepo
+import kotlinx.coroutines.launch
 
 class RepoListViewModel(
-    githubRepository: GithubRepository,
+    private val githubRepository: GithubRepository,
 ) : ViewModel() {
-    val reposList: Flow<PagingData<GithubRepoEntity>> = githubRepository.getGithubRepos()
+
+    sealed class ViewAction {
+        object OnEndOfListReached : ViewAction()
+    }
+
+//    data class ViewState(
+//        val repos: List<GithubRepo>,
+//    )
+
+    val repos = githubRepository.githubRepos
+
+    private var page = INITIAL_PAGE
+
+    init {
+        viewModelScope.launch {
+            githubRepository.fetchItems(page)
+        }
+    }
+
+    fun perform(viewAction: ViewAction) {
+        when (viewAction) {
+            ViewAction.OnEndOfListReached -> loadMore()
+        }
+    }
+
+    private fun loadMore() {
+        page++
+
+        viewModelScope.launch {
+            githubRepository.fetchItems(page)
+        }
+    }
+
 }

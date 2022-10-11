@@ -11,13 +11,4 @@ data class GithubRepoDto(
     val private: Boolean,
     val owner: OwnerDto,
     val visibility: String,
-) {
-    fun toEntity() = GithubRepoEntity(
-        id = this.id,
-        name = this.name,
-        fullName = this.fullName,
-        private = this.private,
-        ownerAvatarUrl = this.owner.avatarUrl,
-        visibility = this.visibility,
-    )
-}
+)
