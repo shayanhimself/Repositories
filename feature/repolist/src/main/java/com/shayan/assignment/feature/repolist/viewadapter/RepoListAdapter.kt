@@ -1,6 +1,5 @@
 package com.shayan.assignment.feature.repolist.viewadapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -21,7 +20,6 @@ class RepoListAdapter : RecyclerView.Adapter<RepoViewHolder>() {
 
     override fun onBindViewHolder(holder: RepoViewHolder, position: Int) {
         holder.bind(items[position])
-        Log.d("Shayan", "RepoListAdapter.onBindViewHolder($position)")
     }
 
     override fun getItemCount() = items.size
@@ -29,5 +27,6 @@ class RepoListAdapter : RecyclerView.Adapter<RepoViewHolder>() {
     fun updateList(repos: List<GithubRepoModel>) {
         items = repos
         notifyDataSetChanged()
+        //TODO: Use DiffUtil instead
     }
 }

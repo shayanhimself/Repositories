@@ -9,5 +9,5 @@
     <dimen name="radius_small">2dp</dimen>
 
     <dimen name="text_size_m">16sp</dimen>
-    <dimen name="text_size_l">28sp</dimen>
+    <dimen name="text_size_l">24sp</dimen>
 </resources>

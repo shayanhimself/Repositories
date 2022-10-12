@@ -5,15 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.shayan.assignment.feature.repolist.databinding.FragmentListBinding
 import com.shayan.assignment.feature.repolist.viewadapter.RepoListAdapter
 import com.shayan.assignment.feature.repolist.viewmodel.RepoListViewModel
 import com.shayan.assignment.feature.repolist.viewmodel.RepoListViewModel.ViewAction
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.max
 
@@ -43,13 +40,15 @@ class RepoListFragment : Fragment() {
         reposRecyclerView.adapter = adapter
         reposRecyclerView.addOnScrollListener(endOfListScrollListener)
 
+        swipeRefreshLayout.setOnRefreshListener {
+            viewModel.perform(ViewAction.OnSwipeToRefresh)
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
     }
 
     private fun observeListings() {
-        lifecycleScope.launch {
-            viewModel.repos.collectLatest {
-                adapter.updateList(it)
-            }
+        viewModel.reposLiveData.observe(viewLifecycleOwner) {
+            adapter.updateList(it)
         }
     }
 

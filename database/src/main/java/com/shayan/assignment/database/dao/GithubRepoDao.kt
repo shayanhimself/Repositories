@@ -13,7 +13,7 @@ interface GithubRepoDao {
     suspend fun insertAll(repos: List<GithubRepoEntity>)
 
     @Query("SELECT * FROM repos ORDER BY orderIndex ASC")
-    fun getAll(): Flow<List<GithubRepoEntity>>
+    suspend fun getAll(): List<GithubRepoEntity>
 
     @Query("DELETE FROM repos")
     suspend fun clearAll()

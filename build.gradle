@@ -27,6 +27,7 @@ buildscript {
         glideVersion = '4.10.0'
         mockitoVersion = '4.5.1'
         roomVersion = '2.4.3'
+        swipeRefreshLayoutVersion = '1.1.0'
     }
 
     repositories {
