@@ -14,17 +14,22 @@ class RepoListViewModel(
         object OnEndOfListReached : ViewAction()
     }
 
-//    data class ViewState(
-//        val repos: List<GithubRepo>,
-//    )
+    private data class InternalState(
+        val nextPage: Int = INITIAL_PAGE,
+        val isLoading: Boolean = true,
+    )
+
+    private var internalState = InternalState()
 
     val repos = githubRepository.githubRepos
 
-    private var page = INITIAL_PAGE
-
     init {
         viewModelScope.launch {
-            githubRepository.fetchItems(page)
+            githubRepository.fetchItems(internalState.nextPage)
+
+            internalState = internalState.copy(
+                isLoading = false,
+            )
         }
     }
 
@@ -35,10 +40,21 @@ class RepoListViewModel(
     }
 
     private fun loadMore() {
-        page++
+        if (internalState.isLoading) {
+            return
+        }
+
+        internalState = internalState.copy(
+            nextPage = internalState.nextPage + 1,
+            isLoading = true,
+        )
 
         viewModelScope.launch {
-            githubRepository.fetchItems(page)
+            githubRepository.fetchItems(internalState.nextPage)
+
+            internalState = internalState.copy(
+                isLoading = false,
+            )
         }
     }
 

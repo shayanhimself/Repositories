@@ -17,7 +17,7 @@ val networkKoinModule = module {
             .connectTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
             .readTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
             .writeTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
-            .addInterceptor(HttpLoggingInterceptor().apply { setLevel(Level.BASIC) })
+            .addInterceptor(HttpLoggingInterceptor().apply { setLevel(Level.HEADERS) })
             .build()
     }
 
