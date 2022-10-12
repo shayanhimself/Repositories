@@ -1,4 +1,4 @@
-package com.shayan.assignment.data.dto
+package com.shayan.assignment.network.dto
 
 import com.google.gson.annotations.SerializedName
 

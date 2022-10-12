@@ -1,8 +1,8 @@
 package com.shayan.assignment.data.repository
 
 import androidx.room.withTransaction
-import com.shayan.assignment.data.api.RemoteDataSource
-import com.shayan.assignment.data.dto.GithubRepoDto
+import com.shayan.assignment.network.api.RemoteDataSource
+import com.shayan.assignment.network.dto.GithubRepoDto
 import com.shayan.assignment.data.mapper.toEntity
 import com.shayan.assignment.data.mapper.toModels
 import com.shayan.assignment.database.AppDatabase

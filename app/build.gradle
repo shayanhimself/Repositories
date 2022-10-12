@@ -39,10 +39,10 @@ android {
 dependencies {
     implementation project(":data")
     implementation project(":database")
+    implementation project(":network")
     implementation project(":model")
     implementation project(":designsystem")
     implementation project(":feature:repolist")
-//    implementation project(":network")
 
     // Core
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"

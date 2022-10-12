@@ -1,6 +1,6 @@
-package com.shayan.assignment.data.api
+package com.shayan.assignment.network.api
 
-import com.shayan.assignment.data.dto.GithubRepoDto
+import com.shayan.assignment.network.dto.GithubRepoDto
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

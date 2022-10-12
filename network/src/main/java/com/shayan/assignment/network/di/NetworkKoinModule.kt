@@ -1,12 +1,11 @@
-package com.shayan.assignment.data.di
+package com.shayan.assignment.network.di
 
 import com.google.gson.GsonBuilder
-import com.shayan.assignment.data.DataConstants.BASE_URL
-import com.shayan.assignment.data.DataConstants.TIMEOUT_SECONDS
-import com.shayan.assignment.data.api.GithubService
-import com.shayan.assignment.data.api.RemoteDataSource
+import com.shayan.assignment.network.ApiConstants.BASE_URL
+import com.shayan.assignment.network.ApiConstants.TIMEOUT_SECONDS
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import okhttp3.logging.HttpLoggingInterceptor.Level
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -18,7 +17,7 @@ val networkKoinModule = module {
             .connectTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
             .readTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
             .writeTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
-            .addInterceptor(HttpLoggingInterceptor())
+            .addInterceptor(HttpLoggingInterceptor().apply { setLevel(Level.BASIC) })
             .build()
     }
 
@@ -30,11 +29,11 @@ val networkKoinModule = module {
             .build()
     }
 
-    single<GithubService> {
-        get<Retrofit>().create(GithubService::class.java)
+    single<com.shayan.assignment.network.api.GithubService> {
+        get<Retrofit>().create(com.shayan.assignment.network.api.GithubService::class.java)
     }
 
     factory {
-        RemoteDataSource(githubService = get())
+        com.shayan.assignment.network.api.RemoteDataSource(githubService = get())
     }
 }

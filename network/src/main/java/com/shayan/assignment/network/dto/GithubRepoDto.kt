@@ -1,7 +1,6 @@
-package com.shayan.assignment.data.dto
+package com.shayan.assignment.network.dto
 
 import com.google.gson.annotations.SerializedName
-import com.shayan.assignment.database.entity.GithubRepoEntity
 
 data class GithubRepoDto(
     val id: Int,

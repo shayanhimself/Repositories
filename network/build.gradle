@@ -24,9 +24,6 @@ android {
 }
 
 dependencies {
-    implementation project(":network")
-    implementation project(":database")
-    implementation project(":model")
     // Network
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttpLoggingVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
@@ -35,10 +32,6 @@ dependencies {
     implementation "io.insert-koin:koin-core:$koinVersion"
     implementation "io.insert-koin:koin-android:$koinVersion"
     implementation "io.insert-koin:koin-androidx-viewmodel:$koinVersion"
-    // Database
-    implementation "androidx.room:room-runtime:$roomVersion"
-    implementation "androidx.room:room-ktx:$roomVersion"
-
 }
 
 java {
