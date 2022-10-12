@@ -13,6 +13,6 @@ data class GithubRepoEntity(
     @ColumnInfo var ownerAvatarUrl: String = "",
     @ColumnInfo var visibility: String = "",
     @ColumnInfo var page: Int = 0,
-    @ColumnInfo var order: Int = 0,
+    @ColumnInfo var orderIndex: Int = 0,
 )
 //TODO: convert to immutable

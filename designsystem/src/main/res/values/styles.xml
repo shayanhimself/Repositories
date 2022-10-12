@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Text">
+        <item name="android:paddingStart">@dimen/margin_s</item>
+        <item name="android:paddingEnd">@dimen/margin_s</item>
+    </style>
+
+    <style name="Text.Body">
+        <item name="android:textColor">@color/dark2</item>
+        <item name="android:textSize">@dimen/text_size_m</item>
+    </style>
+
+    <style name="Text.Title">
+        <item name="android:textColor">@color/dark1</item>
+        <item name="android:textSize">@dimen/text_size_l</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.Label">
+        <item name="android:textColor">@color/dark3</item>
+        <item name="android:textSize">@dimen/text_size_m</item>
+    </style>
+</resources>

@@ -1,10 +1,10 @@
 package com.shayan.assignment.model
 
-data class GithubRepo(
+data class GithubRepoModel(
     val id: Int,
     val name: String,
     val fullName: String,
-    val private: Boolean,
+    val isPrivate: Boolean,
     val ownerAvatarUrl: String,
     val visibility: String,
 )

@@ -12,7 +12,7 @@ interface GithubRepoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(repos: List<GithubRepoEntity>)
 
-    @Query("SELECT * FROM repos")
+    @Query("SELECT * FROM repos ORDER BY orderIndex ASC")
     fun getAll(): Flow<List<GithubRepoEntity>>
 
     @Query("DELETE FROM repos")

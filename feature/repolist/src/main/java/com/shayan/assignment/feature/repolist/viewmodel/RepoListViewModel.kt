@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.shayan.assignment.data.repository.GithubRepository
 import com.shayan.assignment.data.repository.GithubRepository.Companion.INITIAL_PAGE
-import com.shayan.assignment.model.GithubRepo
 import kotlinx.coroutines.launch
 
 class RepoListViewModel(

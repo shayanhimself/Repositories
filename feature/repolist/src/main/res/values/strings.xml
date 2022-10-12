@@ -1,4 +1,7 @@
 <resources>
     <string name="listFragmentTitle">ABN Amro Repos</string>
-
+    <string name="visibilityLabel">Visibility:</string>
+    <string name="privacyLabel">Is private:</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

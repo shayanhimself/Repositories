@@ -6,7 +6,7 @@ import com.shayan.assignment.data.dto.GithubRepoDto
 import com.shayan.assignment.data.mapper.toEntity
 import com.shayan.assignment.data.mapper.toModels
 import com.shayan.assignment.database.AppDatabase
-import com.shayan.assignment.model.GithubRepo
+import com.shayan.assignment.model.GithubRepoModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -17,18 +17,22 @@ class GithubRepository(
 
     private val dao = appDatabase.githubRepoDao()
 
-    val githubRepos: Flow<List<GithubRepo>> = dao.getAll().map {
+    val githubRepos: Flow<List<GithubRepoModel>> = dao.getAll().map {
         it.toModels()
     }
 
     suspend fun fetchItems(page: Int) {
-        val response = remoteDataSource.getRepositories(page)
+        try {
+            val response = remoteDataSource.getRepositories(page)
 
-        if (response.isSuccessful && response.body() != null) {
-            val repos: List<GithubRepoDto> = response.body()!!
-            updateDB(repos, page)
-        } else {
-            scheduleRetryIfNeeded()
+            if (response.isSuccessful && response.body() != null) {
+                val repos: List<GithubRepoDto> = response.body()!!
+                updateDB(repos, page)
+            } else {
+                scheduleRetryIfNeeded()
+                handleError()
+            }
+        } catch (e: Exception) {
             handleError()
         }
     }

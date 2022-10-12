@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_xs"
+    app:cardCornerRadius="@dimen/radius_medium">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/repoTitleText"
+            style="@style/Text.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_m"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="ABN Amro Mobile Bank" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/avatarImageContainer"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="@dimen/margin_m"
+            app:cardCornerRadius="@dimen/radius_medium"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/repoTitleText">
+
+            <ImageView
+                android:id="@+id/avatarImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/visibilityLabel"
+            style="@style/Text.Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_m"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/avatarImageContainer"
+            android:text="@string/visibilityLabel" />
+
+        <TextView
+            android:id="@+id/visibilityText"
+            style="@style/Text.Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/visibilityLabel"
+            app:layout_constraintTop_toTopOf="@+id/visibilityLabel"
+            app:layout_constraintBottom_toBottomOf="@+id/visibilityLabel"
+            tools:text="Public" />
+
+        <TextView
+            android:id="@+id/isPrivateLabel"
+            style="@style/Text.Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_s"
+            android:layout_marginBottom="@dimen/margin_m"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/visibilityLabel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/privacyLabel" />
+
+        <TextView
+            android:id="@+id/isPrivateText"
+            style="@style/Text.Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/isPrivateLabel"
+            app:layout_constraintTop_toTopOf="@+id/isPrivateLabel"
+            app:layout_constraintBottom_toBottomOf="@+id/isPrivateLabel"
+            tools:text="No" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

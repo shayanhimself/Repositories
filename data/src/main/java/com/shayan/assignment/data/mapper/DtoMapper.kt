@@ -11,5 +11,5 @@ fun GithubRepoDto.toEntity(page: Int, index: Int) = GithubRepoEntity(
     ownerAvatarUrl = this.owner.avatarUrl,
     visibility = this.visibility,
     page = page,
-    order = page * index
+    orderIndex = page * index
 )

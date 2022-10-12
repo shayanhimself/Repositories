@@ -1,15 +1,15 @@
 package com.shayan.assignment.data.mapper
 
 import com.shayan.assignment.database.entity.GithubRepoEntity
-import com.shayan.assignment.model.GithubRepo
+import com.shayan.assignment.model.GithubRepoModel
 
-fun GithubRepoEntity.toModel() = GithubRepo(
+fun GithubRepoEntity.toModel() = GithubRepoModel(
     id = this.id,
     name = this.name,
     fullName = this.fullName,
-    private = this.private,
+    isPrivate = this.private,
     ownerAvatarUrl = this.ownerAvatarUrl,
     visibility = this.visibility,
 )
 
-fun List<GithubRepoEntity>.toModels(): List<GithubRepo> = this.map { it.toModel() }
+fun List<GithubRepoEntity>.toModels(): List<GithubRepoModel> = this.map { it.toModel() }

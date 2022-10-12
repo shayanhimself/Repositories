@@ -1,0 +1,13 @@
+<resources>
+    <dimen name="margin_m">16dp</dimen>
+    <dimen name="margin_xm">12dp</dimen>
+    <dimen name="margin_s">8dp</dimen>
+    <dimen name="margin_xs">4dp</dimen>
+    <dimen name="margin_xxs">2dp</dimen>
+
+    <dimen name="radius_medium">4dp</dimen>
+    <dimen name="radius_small">2dp</dimen>
+
+    <dimen name="text_size_m">16sp</dimen>
+    <dimen name="text_size_l">28sp</dimen>
+</resources>
