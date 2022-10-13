@@ -37,6 +37,7 @@ class GithubRepository(
             createErrorResults()
         }
     } catch (e: Exception) {
+        e.printStackTrace()
         createErrorResults(e)
     }
 

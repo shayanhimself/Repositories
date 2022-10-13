@@ -3,6 +3,8 @@ package com.shayan.assignment.network.di
 import com.google.gson.GsonBuilder
 import com.shayan.assignment.network.ApiConstants.BASE_URL
 import com.shayan.assignment.network.ApiConstants.TIMEOUT_SECONDS
+import com.shayan.assignment.network.api.GithubService
+import com.shayan.assignment.network.api.RemoteDataSource
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level
@@ -29,11 +31,11 @@ val networkKoinModule = module {
             .build()
     }
 
-    single<com.shayan.assignment.network.api.GithubService> {
-        get<Retrofit>().create(com.shayan.assignment.network.api.GithubService::class.java)
+    single<GithubService> {
+        get<Retrofit>().create(GithubService::class.java)
     }
 
     factory {
-        com.shayan.assignment.network.api.RemoteDataSource(githubService = get())
+        RemoteDataSource(githubService = get())
     }
 }
