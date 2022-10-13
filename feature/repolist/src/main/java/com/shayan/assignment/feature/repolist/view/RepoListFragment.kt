@@ -4,11 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import com.shayan.assignment.feature.repolist.databinding.FragmentListBinding
+import com.shayan.assignment.feature.repolist.R
+import com.shayan.assignment.feature.repolist.databinding.FragmentRepoListBinding
+import com.shayan.assignment.feature.repolist.view.RepoDetailFragment.Companion.ARG_REPO_ID
 import com.shayan.assignment.feature.repolist.viewadapter.RepoListAdapter
 import com.shayan.assignment.feature.repolist.viewmodel.RepoListViewModel
 import com.shayan.assignment.feature.repolist.viewmodel.RepoListViewModel.ViewAction
@@ -19,9 +23,16 @@ class RepoListFragment : Fragment() {
 
     private val viewModel: RepoListViewModel by viewModel()
 
-    private lateinit var binding: FragmentListBinding
+    private lateinit var binding: FragmentRepoListBinding
 
-    private val adapter = RepoListAdapter()
+    private val onRepoClickListener = object : OnRepoClickListener {
+        override fun onRepoItemClick(repoId: Int) {
+            val bundle = bundleOf(ARG_REPO_ID to repoId)
+            findNavController().navigate(R.id.action_list_to_detail, bundle)
+        }
+    }
+
+    private val adapter = RepoListAdapter(onRepoClickListener)
     private lateinit var linearLayoutManager : LinearLayoutManager
 
     override fun onCreateView(
@@ -29,7 +40,7 @@ class RepoListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentListBinding.inflate(inflater, container, false)
+        binding = FragmentRepoListBinding.inflate(inflater, container, false)
         initRecyclerView()
         observeListings()
         observeError()
@@ -77,6 +88,7 @@ class RepoListFragment : Fragment() {
         val threshold = max(adapter.itemCount - END_OF_LIST_OFFSET, 0)
         return threshold <= linearLayoutManager.findLastCompletelyVisibleItemPosition()
     }
+
 
     companion object {
         const val END_OF_LIST_OFFSET = 5

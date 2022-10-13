@@ -7,4 +7,6 @@ data class GithubRepoModel(
     val isPrivate: Boolean,
     val ownerAvatarUrl: String,
     val visibility: String,
+    val description: String?,
+    val htmlUrl: String,
 )

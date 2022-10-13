@@ -10,6 +10,7 @@ internal fun GithubRepoDto.toEntity(page: Int, index: Int) = GithubRepoEntity(
     private = this.private,
     ownerAvatarUrl = this.owner.avatarUrl,
     visibility = this.visibility,
-    page = page,
-    orderIndex = page * (index + 1)
+    description = this.description,
+    htmlUrl = this.htmlUrl,
+    orderIndex = page * (index + 1),
 )

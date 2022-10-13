@@ -10,6 +10,8 @@ internal fun GithubRepoEntity.toModel() = GithubRepoModel(
     isPrivate = this.private,
     ownerAvatarUrl = this.ownerAvatarUrl,
     visibility = this.visibility,
+    description = this.description,
+    htmlUrl = this.htmlUrl,
 )
 
 fun List<GithubRepoEntity>.toModels(): List<GithubRepoModel> = this.map { it.toModel() }

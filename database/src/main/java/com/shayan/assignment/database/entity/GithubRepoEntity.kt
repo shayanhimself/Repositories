@@ -12,7 +12,8 @@ data class GithubRepoEntity(
     @ColumnInfo var private: Boolean = false,
     @ColumnInfo var ownerAvatarUrl: String = "",
     @ColumnInfo var visibility: String = "",
-    @ColumnInfo var page: Int = 0,
+    @ColumnInfo var description: String? = null,
+    @ColumnInfo var htmlUrl: String = "",
     @ColumnInfo var orderIndex: Int = 0,
 )
 //TODO: convert to immutable

@@ -15,6 +15,9 @@ interface GithubRepoDao {
     @Query("SELECT * FROM repos ORDER BY orderIndex ASC")
     suspend fun getAll(): List<GithubRepoEntity>
 
+    @Query("SELECT * FROM repos WHERE id = :repoId")
+    suspend fun get(repoId: Int): GithubRepoEntity
+
     @Query("DELETE FROM repos")
     suspend fun clearAll()
 }

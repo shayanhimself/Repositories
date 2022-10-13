@@ -10,4 +10,7 @@ data class GithubRepoDto(
     val private: Boolean,
     val owner: OwnerDto,
     val visibility: String,
+    val description: String?,
+    @SerializedName("html_url")
+    val htmlUrl: String,
 )

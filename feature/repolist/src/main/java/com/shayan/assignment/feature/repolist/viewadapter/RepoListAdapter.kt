@@ -4,9 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.shayan.assignment.feature.repolist.databinding.RepoListItemBinding
+import com.shayan.assignment.feature.repolist.view.OnRepoClickListener
 import com.shayan.assignment.model.GithubRepoModel
 
-class RepoListAdapter : RecyclerView.Adapter<RepoViewHolder>() {
+class RepoListAdapter(
+    private val onRepoClickListener: OnRepoClickListener
+) : RecyclerView.Adapter<RepoViewHolder>() {
 
     private var items: List<GithubRepoModel> = emptyList()
 
@@ -15,7 +18,8 @@ class RepoListAdapter : RecyclerView.Adapter<RepoViewHolder>() {
             LayoutInflater.from(parent.context),
             parent,
             false
-        )
+        ),
+        onRepoClickListener,
     )
 
     override fun onBindViewHolder(holder: RepoViewHolder, position: Int) {

@@ -1,4 +1,5 @@
 <resources>
+    <dimen name="margin_l">24dp</dimen>
     <dimen name="margin_m">16dp</dimen>
     <dimen name="margin_xm">12dp</dimen>
     <dimen name="margin_s">8dp</dimen>

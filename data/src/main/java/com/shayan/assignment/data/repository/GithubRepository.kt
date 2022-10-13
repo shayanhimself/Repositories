@@ -5,6 +5,7 @@ import com.shayan.assignment.network.api.RemoteDataSource
 import com.shayan.assignment.network.dto.GithubRepoDto
 import com.shayan.assignment.data.mapper.toEntity
 import com.shayan.assignment.data.mapper.toErrorType
+import com.shayan.assignment.data.mapper.toModel
 import com.shayan.assignment.data.mapper.toModels
 import com.shayan.assignment.database.AppDatabase
 import com.shayan.assignment.model.GithubRepoModel
@@ -39,6 +40,10 @@ class GithubRepository(
         createErrorResults(e)
     }
 
+    suspend fun getItem(repoId: Int): GithubRepoModel = withContext(ioContext) {
+        dao.get(repoId).toModel()
+    }
+
     private suspend fun createSuccessResults(
         response: Response<List<GithubRepoDto>>
     ) = withContext(ioContext) {
@@ -69,7 +74,9 @@ class GithubRepository(
             repo.toEntity(page, index)
         }
 
-        dao.insertAll(reposEntity)
+        appDatabase.withTransaction {
+            dao.insertAll(reposEntity)
+        }
     }
 
 }

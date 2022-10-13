@@ -1,6 +1,7 @@
 package com.shayan.assignment.feature.repolist.di
 
 import com.shayan.assignment.feature.repolist.mapper.ErrorMapper
+import com.shayan.assignment.feature.repolist.viewmodel.RepoDetailViewModel
 import com.shayan.assignment.feature.repolist.viewmodel.RepoListViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -13,6 +14,13 @@ val repoListKoinModule = module {
         RepoListViewModel(
             githubRepository = get(),
             errorMapper = get(),
+        )
+    }
+
+    viewModel { (repoId : Int) ->
+        RepoDetailViewModel(
+            githubRepository = get(),
+            repoId = repoId,
         )
     }
 }
