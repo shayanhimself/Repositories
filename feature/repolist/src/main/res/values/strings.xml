@@ -4,4 +4,7 @@
     <string name="privacyLabel">Is private:</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+
+    <string name="connectivityIssue">No internet connection</string>
+    <string name="unknownIssue">Something went wrong</string>
 </resources>

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.shayan.assignment.feature.repolist.databinding.FragmentListBinding
 import com.shayan.assignment.feature.repolist.viewadapter.RepoListAdapter
 import com.shayan.assignment.feature.repolist.viewmodel.RepoListViewModel
@@ -31,6 +32,7 @@ class RepoListFragment : Fragment() {
         binding = FragmentListBinding.inflate(inflater, container, false)
         initRecyclerView()
         observeListings()
+        observeError()
         return binding.root
     }
 
@@ -49,6 +51,16 @@ class RepoListFragment : Fragment() {
     private fun observeListings() {
         viewModel.reposLiveData.observe(viewLifecycleOwner) {
             adapter.updateList(it)
+        }
+    }
+
+    private fun observeError() {
+        viewModel.errorLiveData.observe(viewLifecycleOwner) {
+            Snackbar.make(
+                binding.swipeRefreshLayout,
+                it,
+                Snackbar.LENGTH_SHORT
+            ).show()
         }
     }
 

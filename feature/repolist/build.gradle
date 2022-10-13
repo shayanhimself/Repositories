@@ -30,6 +30,7 @@ dependencies {
     implementation project(":data")
     implementation project(":model")
     implementation project(":designsystem")
+    implementation project(":network")
 
     // Core
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"

@@ -5,4 +5,5 @@ object ApiConstants {
     const val TIMEOUT_SECONDS = 6L
     const val DEFAULT_USER_NAME = "abnamrocoesd"
     const val PAGE_SIZE = 10
+    const val INITIAL_PAGE = 1
 }

@@ -5,14 +5,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.shayan.assignment.data.repository.GithubRepository
-import com.shayan.assignment.data.repository.GithubRepository.Companion.INITIAL_PAGE
+import com.shayan.assignment.feature.repolist.mapper.ErrorMapper
+import com.shayan.assignment.feature.repolist.utils.SingleLiveEvent
 import com.shayan.assignment.model.GithubRepoModel
 import com.shayan.assignment.model.Result
 import com.shayan.assignment.model.ResultStatus
+import com.shayan.assignment.network.ApiConstants.INITIAL_PAGE
 import kotlinx.coroutines.launch
 
 class RepoListViewModel(
     private val githubRepository: GithubRepository,
+    private val errorMapper: ErrorMapper,
 ) : ViewModel() {
 
     sealed class ViewAction {
@@ -30,6 +33,9 @@ class RepoListViewModel(
 
     private val _reposLiveData = MutableLiveData<List<GithubRepoModel>>()
     val reposLiveData: LiveData<List<GithubRepoModel>> = _reposLiveData
+
+    private val _errorLiveData = SingleLiveEvent<String>()
+    val errorLiveData: LiveData<String> = _errorLiveData
 
     init {
         fetchItems()
@@ -92,6 +98,7 @@ class RepoListViewModel(
             isLoading = false,
         )
         _reposLiveData.value = result.data
+        _errorLiveData.value = errorMapper.map(result)
     }
 
 }
