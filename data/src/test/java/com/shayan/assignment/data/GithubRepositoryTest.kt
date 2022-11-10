@@ -9,9 +9,9 @@ import com.shayan.assignment.model.ResultStatus
 import com.shayan.assignment.network.api.RemoteDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.*
 import org.junit.Assert.assertEquals
@@ -43,7 +43,7 @@ class GithubRepositoryTest {
     }
 
     @Test
-    fun `should return db items and error when api call fails`() = runBlocking {
+    fun `should return db items and error when api call fails`() = runTest {
         val dbItems = createRepoEntities(40)
 
         `when`(remoteDataSource.getRepositories(anyInt())).thenReturn(createFailResponse())

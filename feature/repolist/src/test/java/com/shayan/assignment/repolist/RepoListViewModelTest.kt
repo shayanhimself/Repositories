@@ -7,9 +7,9 @@ import com.shayan.assignment.feature.repolist.viewmodel.RepoListViewModel
 import com.shayan.assignment.feature.repolist.viewmodel.RepoListViewModel.ViewAction.OnEndOfListReached
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.Before
 import org.junit.After
@@ -44,7 +44,7 @@ class RepoListViewModelTest {
     }
 
     @Test
-    fun `should fetch 1 page when initialised`() = runBlocking {
+    fun `should fetch 1 page when initialised`() = runTest {
         val repos = createRepoModels(count = 10)
         `when`(githubRepository.fetchItems(anyInt())).thenReturn(
             createSuccessResults(repos)
@@ -56,7 +56,7 @@ class RepoListViewModelTest {
     }
 
     @Test
-    fun `should fetch 4 pages and stop when it's last page`() = runBlocking {
+    fun `should fetch 4 pages and stop when it's last page`() = runTest {
         val repos = createRepoModels(count = 35)
 
         `when`(githubRepository.fetchItems(1)).thenReturn(

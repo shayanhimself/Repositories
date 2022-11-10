@@ -19,7 +19,7 @@ class FlowTests {
     var activityRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Test
-    fun `shouldNavigateFromListToTheCorrectDetailFragment`() {
+    fun shouldNavigateFromListToTheCorrectDetailFragment() {
         waitTest(200)
         onView(withText("Repo 1")).perform(click())
         onView(withText("abn/Repo1")).check(matches(isDisplayed()))
