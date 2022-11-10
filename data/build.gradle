@@ -27,10 +27,6 @@ dependencies {
     implementation project(":network")
     implementation project(":database")
     implementation project(":model")
-    // Network
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpLoggingVersion"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     // DI
     implementation "io.insert-koin:koin-core:$koinVersion"
     implementation "io.insert-koin:koin-android:$koinVersion"

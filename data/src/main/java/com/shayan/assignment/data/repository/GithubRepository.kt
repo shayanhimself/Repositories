@@ -12,10 +12,8 @@ import com.shayan.assignment.model.GithubRepoModel
 import com.shayan.assignment.model.Result
 import com.shayan.assignment.model.ResultStatus
 import com.shayan.assignment.network.ApiConstants.INITIAL_PAGE
-import com.shayan.assignment.network.utils.isLastPage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import retrofit2.Response
 import java.io.IOException
 import kotlin.coroutines.CoroutineContext
 
@@ -30,10 +28,9 @@ class GithubRepository(
     suspend fun fetchItems(page: Int): Result<List<GithubRepoModel>> = try {
         val response = remoteDataSource.getRepositories(page)
 
-        if (response.isSuccessful && response.body() != null) {
-            val repos: List<GithubRepoDto> = response.body()!!
-            updateDB(repos, page)
-            createSuccessResults(response)
+        if (response.isSuccessful) {
+            updateDB(response.repos, page)
+            createSuccessResults(response.isLastPage)
         } else {
             createErrorResults()
         }
@@ -46,13 +43,11 @@ class GithubRepository(
         dao.get(repoId).toModel()
     }
 
-    private suspend fun createSuccessResults(
-        response: Response<List<GithubRepoDto>>
-    ) = withContext(ioContext) {
+    private suspend fun createSuccessResults(isLastPage: Boolean) = withContext(ioContext) {
         Result(
             data = dao.getAll().toModels(),
             status = ResultStatus.SUCCESS,
-            isLastPage = response.isLastPage(),
+            isLastPage = isLastPage,
         )
     }
 
