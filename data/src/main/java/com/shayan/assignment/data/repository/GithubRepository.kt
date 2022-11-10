@@ -4,10 +4,10 @@ import androidx.room.withTransaction
 import com.shayan.assignment.network.api.RemoteDataSource
 import com.shayan.assignment.network.dto.GithubRepoDto
 import com.shayan.assignment.data.mapper.toEntity
-import com.shayan.assignment.data.mapper.toErrorType
 import com.shayan.assignment.data.mapper.toModel
 import com.shayan.assignment.data.mapper.toModels
 import com.shayan.assignment.database.AppDatabase
+import com.shayan.assignment.model.ErrorType
 import com.shayan.assignment.model.GithubRepoModel
 import com.shayan.assignment.model.Result
 import com.shayan.assignment.model.ResultStatus
@@ -16,6 +16,7 @@ import com.shayan.assignment.network.utils.isLastPage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
+import java.io.IOException
 import kotlin.coroutines.CoroutineContext
 
 class GithubRepository(
@@ -36,7 +37,7 @@ class GithubRepository(
         } else {
             createErrorResults()
         }
-    } catch (e: Exception) {
+    } catch (e: IOException) {
         e.printStackTrace()
         createErrorResults(e)
     }
@@ -55,12 +56,12 @@ class GithubRepository(
         )
     }
 
-    private suspend fun createErrorResults(exception: Exception? = null) = withContext(ioContext) {
+    private suspend fun createErrorResults(ioException: IOException? = null) = withContext(ioContext) {
         Result(
             data = dao.getAll().toModels(),
             status = ResultStatus.ERROR,
-            errorType = exception.toErrorType(),
-            errorMessage = exception?.message,
+            errorType = getErrorType(ioException),
+            errorMessage = ioException?.message,
         )
     }
 
@@ -78,6 +79,12 @@ class GithubRepository(
         appDatabase.withTransaction {
             dao.insertAll(reposEntity)
         }
+    }
+
+    private fun getErrorType(ioException: IOException?): ErrorType = if (ioException != null) {
+        ErrorType.CONNECTIVITY
+    } else {
+        ErrorType.GENERAL
     }
 
 }
