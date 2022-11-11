@@ -23,6 +23,11 @@ android {
 
     buildFeatures {
         viewBinding true
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = rootProject.kotlinCompilerExtensionVersion
     }
 }
 
@@ -64,6 +69,17 @@ dependencies {
     testImplementation "org.mockito:mockito-android:$mockitoVersion"
     testImplementation "org.mockito.kotlin:mockito-kotlin:$mockitoKotlinVersion"
     testImplementation "androidx.arch.core:core-testing:$androidXCoreTestingVersion"
+
+    // Compose
+    def composeBom = platform("androidx.compose:compose-bom:$composeBomVersion")
+    implementation composeBom
+    androidTestImplementation composeBom
+    implementation 'androidx.compose.material:material'
+    implementation 'androidx.compose.ui:ui-tooling-preview'
+    debugImplementation 'androidx.compose.ui:ui-tooling'
+    implementation "androidx.activity:activity-compose:$composeActivityVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$composeViewModelVersion"
+    implementation 'androidx.compose.runtime:runtime-livedata'
 
 }
 
