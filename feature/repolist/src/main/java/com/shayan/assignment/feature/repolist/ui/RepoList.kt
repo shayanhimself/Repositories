@@ -8,17 +8,19 @@ import com.shayan.assignment.designsystem.MyTheme
 
 @Composable
 fun RepoList(){
+    val repoItems = listOf(1, 2, 3, 4, 5, 6)
     LazyColumn{
-        item {
-            Text(text = "Hello world")
-        }
-        item {
-            Text(text = "Hello world 2")
-        }
-        item {
-            Text(text = "Hello world 3")
+        repoItems.forEach {
+            item {
+                RepoRow(num = it)
+            }
         }
     }
+}
+
+@Composable
+fun RepoRow(num: Int) {
+    Text(text = "Hello world $num")
 }
 
 @Preview
